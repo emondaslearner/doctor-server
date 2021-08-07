@@ -27,6 +27,8 @@ client.connect(err => {
     })
     app.post('/appoint',(req,res) => {
       collectionAppoint.insertOne(req.body)
+      .then(res => res.json())
+      .then(data => req.send(data))
     })
     app.get('/getAppoint',(req,res) => {
       collectionAppoint.find({})
