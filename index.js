@@ -145,7 +145,7 @@ client.connect(err => {
   app.post('/mail',(req,res) => {
 
     let transporter  = nodemailer.createTransport({
-      host:'smtp.gmail.com',
+      host:'imap.gmail.com',
       port:465,
       secure:true,
       requireTLS:true,
