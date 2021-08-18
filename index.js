@@ -154,13 +154,6 @@ client.connect(err => {
         user:'emonwordpress.1000@gmail.com',
         pass:process.env.EMAIL_PASS
       },
-      
-      maxConnections: 50,
-      maxMessages: 100,
-      tls: {
-        // do not fail on invalid certs
-        rejectUnauthorized: false
-    },
     });
     let mailOption = {
       from:'emonwordpress.1000@gmail.com',
