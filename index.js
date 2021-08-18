@@ -147,13 +147,17 @@ client.connect(err => {
 
     let transporter  = nodemailer.createTransport({
       host:'smtp.gmail.com',
-      port:587,
-      secure:false,
+      port:465,
+      secure:true,
       requireTLS:true,
       auth:{
         user:'emonwordpress.1000@gmail.com',
         pass:process.env.EMAIL_PASS
       },
+      tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
+    },
     });
     let mailOption = {
       from:'emonwordpress.1000@gmail.com',
