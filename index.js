@@ -144,11 +144,10 @@ client.connect(err => {
 
   app.post('/mail',(req,res) => {
 
-
     let transporter  = nodemailer.createTransport({
       host:'smtp.gmail.com',
-      port:587,
-      secure:false,
+      port:465,
+      secure:true,
       requireTLS:true,
       auth:{
         user:'emonwordpress.1000@gmail.com',
@@ -161,9 +160,9 @@ client.connect(err => {
     });
     let mailOption = {
       from:'emonwordpress.1000@gmail.com',
-      to:'emon.1000das@gmail.com',
+      to:req.body.email,
       subject:'doctor portal verify code',
-      text:`hi emon`
+      text:`your code is ${req.body.code}`,
     }
     transporter .sendMail(mailOption,function(error,info){
       if(error){
