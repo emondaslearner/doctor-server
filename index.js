@@ -35,6 +35,7 @@ client.connect(err => {
   })
   app.post('/insertAppoint', (req, res) => {
     appointCollection.insertOne(req.body)
+    .then(result => res.send(result))
   })
   app.post('/AddDoctors', (req, res) => {
     const file = req.files.file;
@@ -180,6 +181,7 @@ client.connect(err => {
 
   app.patch('/deleteAppoint',(req,res) => {
     appointCollection.deleteOne({_id:Object(req.body.id)})
+    .then(result => res.send(result))
   })
   app.get('/doctors',(req,res) => {
     collection.find({status:'doctor'})
