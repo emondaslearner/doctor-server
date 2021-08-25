@@ -38,19 +38,23 @@ client.connect(err => {
     .then(result => res.send(result))
   })
   app.post('/AddDoctors', (req, res) => {
+    console.log(req.files.file)
     const file = req.files.file;
     const name = req.body.name;
     const email = req.body.email;
     const phone = req.body.phone;
     const password = req.body.password;
     const status = req.body.status;
-    const filePath = `${__dirname}/doctors/${file.name}`;
-    file.mv(filePath,err => {
+    const filePath = `${__dirname}/doctors/${req.files.file.name}`;
+    req.files.file.mv(filePath,err => {
+      if(err){
+        res.send(err)
+      }
       const image = fs.readFileSync(filePath)
       const encImg = image.toString('base64')
       const img = {
-        contentType:file.mimetype,
-        size:file.size,
+        contentType:req.files.file.mimetype,
+        size:req.files.file.size,
         img:Buffer(encImg,'base64')
       }
       collection.insertOne({ name: name, email: email, password: password, phone: phone, img, status: status })
